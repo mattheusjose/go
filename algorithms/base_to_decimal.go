@@ -23,14 +23,13 @@ func ToDecimal(numericRep string, base int) int {
 
 	for _, bit := range numericRep {
 
-		var result int
 		index := string(bit)
 		mapDigit, hasKey := digits[index]
 
 		digit = string(bit)
 
 		if hasKey {
-			digit = mapDigit
+			digit = string(mapDigit)
 		}
 
 		numericDigit, err := strconv.Atoi(digit)
@@ -38,7 +37,7 @@ func ToDecimal(numericRep string, base int) int {
 			panic("Error converting numeric value")
 		}
 
-		result = int(math.Pow(float64(base), float64(exponentialFactor))) * int(numericDigit)
+		result := int(math.Pow(float64(base), float64(exponentialFactor))) * int(numericDigit)
 		decimalNumber += result
 		exponentialFactor -= 1
 	}
@@ -53,6 +52,6 @@ func main() {
 	fmt.Println(fmt.Sprintf("%v to base %v = %v", "10", 2, ToDecimal("10", base)))
 	fmt.Println(fmt.Sprintf("%v to base %v = %v", "21", 3, ToDecimal("21", 3)))
 	fmt.Println(fmt.Sprintf("%v to base %v = %v", "1110", 2, ToDecimal("1110", 2)))
-	fmt.Println(fmt.Sprintf("%v to base %v = %v", "255", base, ToDecimal("255", 16)))
+	fmt.Println(fmt.Sprintf("%v to base %v = %v", "E", 16, ToDecimal("E", 16)))
 	fmt.Println(fmt.Sprintf("%v to base %v = %v", "11", 16, ToDecimal("11", 16)))
 }
