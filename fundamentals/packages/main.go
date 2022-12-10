@@ -1,14 +1,27 @@
 package main
 
-import "fmt"
+import (
+	"arithmetic/functions"
+	"fmt"
+)
 
 func main() {
 
-	type Name string
+	fmt.Println("Arithmetic Operations")
+
 	var (
-		name Name = "Jhon Doe"
+		a int = 50
+		b int = 20
 	)
 
-	fmt.Printf("Type of variable name: %T\n", name)
-	fmt.Printf("Value of variable name: %v", name)
+	sumRes := functions.Sum(a, b)
+	subRes := functions.Subtract(a, b)
+	divRes := functions.Divide(a, b)
+	mulRes := functions.Multiply(a, b)
+
+	fmt.Printf("Operation Id: %v", functions.RandomUUID())
+	fmt.Printf("%v+%v=%v\n", a, b, sumRes)
+	fmt.Printf("%v-%v=%v\n", a, b, subRes)
+	fmt.Printf("%v/%v=%v\n", a, b, divRes)
+	fmt.Printf("%vx%v=%v\n", a, b, mulRes)
 }
